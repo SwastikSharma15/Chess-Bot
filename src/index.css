@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* Disable scrolling */
+html, body {
+  overflow: hidden;
+  height: 100vh;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Force all chess pieces to use proper colors */
+.chess-piece {
+  font-family: 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif !important;
+}
+
+/* Force black pieces to be pure black */
+.chess-piece[style*="text-black"],
+.chess-piece.text-black {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8) !important;
+}
+
+/* Custom font weights and spacing */
+.chess-title {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.chess-subtitle {
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.chess-label {
+  font-weight: 500;
+  opacity: 0.6;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chess-value {
+  font-weight: 600;
+}
+
+/* Smooth transitions for all interactive elements */
+.chess-interactive {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Premium button styles */
+.chess-button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.chess-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.chess-button:active {
+  transform: translateY(0);
+}
+
+/* Panel styling */
+.chess-panel {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
