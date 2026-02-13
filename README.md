@@ -2,6 +2,8 @@
 
 A fully functional chess game built with React, featuring human vs AI gameplay with a clean, responsive interface.
 
+![Chess Master Preview](./public/preview.png)
+
 ## Features
 
 - **Human vs AI Chess Game**: Play against a Minimax AI opponent
