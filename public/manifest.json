@@ -1,0 +1,61 @@
+{
+  "name": "Chess Master - Play Online Chess",
+  "short_name": "Chess Master",
+  "description": "Play an interactive chess game! Challenge yourself with intelligent AI opponents, smooth gameplay, and beautiful chess board interface. No downloads required - play instantly in your browser!",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "categories": ["games"],
+  "screenshots": [
+    {
+      "src": "/preview.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/preview.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/SpeedX_Logo_Transparent_white.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/SpeedX_Logo_Transparent_white.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/SpeedX_Logo_Transparent_white.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Play Chess",
+      "short_name": "Play",
+      "description": "Start a new chess game",
+      "url": "/?mode=play",
+      "icons": [
+        {
+          "src": "/SpeedX_Logo_Transparent_white.webp",
+          "sizes": "96x96",
+          "type": "image/webp"
+        }
+      ]
+    }
+  ]
+}

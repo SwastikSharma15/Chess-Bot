@@ -1,0 +1,21 @@
+# robots.txt for Chess Master
+# Allow all crawlers to index the site
+
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /.env
+Disallow: /.git/
+Disallow: /dist/
+Disallow: /*.map
+
+# Specific rules for search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap location
+Sitemap: https://chessnubot.vercel.app/sitemap.xml
