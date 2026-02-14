@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { Analytics } from '@vercel/analytics/react';
 import CustomChessBoard from './components/CustomChessBoard.jsx';
 import CapturedPieces from './components/CapturedPieces.jsx';
 import { useChessGame } from './hooks/useChessGame.js';
@@ -161,6 +162,7 @@ const App = () => {
             </button>
           </div>
         </div>
+        <Analytics />
       </div>
     );
   }
@@ -330,6 +332,7 @@ const App = () => {
           background: rgba(0, 0, 0, 0.5);
         }
       `}</style>
+      <Analytics />
     </div>
   );
 };
