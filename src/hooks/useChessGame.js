@@ -1,10 +1,12 @@
 import { useState, useCallback, useEffect } from 'react';
 import { ChessEngine } from '../logic/engine.js';
 import { ChessAI } from '../logic/ai.js';
+import { AudioManager } from '../logic/audioManager.js';
 
 export const useChessGame = (playerColor = 'white') => {
   const [engine] = useState(() => new ChessEngine());
   const [ai] = useState(() => new ChessAI(4)); // Increased depth for much stronger play
+  const [audioManager] = useState(() => new AudioManager());
   
   const [gameState, setGameState] = useState(() => engine.getGameState());
   const [selectedSquare, setSelectedSquare] = useState(null);
@@ -44,6 +46,11 @@ export const useChessGame = (playerColor = 'white') => {
       setSelectedSquare(null);
       setLegalMoves([]);
       updateGameState();
+      
+      // Play move sound
+      const newGameState = engine.getGameState();
+      audioManager.playMoveSound(result.move, newGameState);
+      
       return true;
     }
     
@@ -82,6 +89,10 @@ export const useChessGame = (playerColor = 'white') => {
         setSelectedSquare(null);
         setLegalMoves([]);
         updateGameState();
+        
+        // Play move sound
+        const newGameState = engine.getGameState();
+        audioManager.playMoveSound(result.move, newGameState);
       }
     } else {
       // Select new square and show legal moves
@@ -126,6 +137,10 @@ export const useChessGame = (playerColor = 'white') => {
           
           setLastMove({ from: aiMove.from, to: aiMove.to });
           updateGameState();
+          
+          // Play move sound
+          const newGameState = engine.getGameState();
+          audioManager.playMoveSound(result.move, newGameState);
         }
       }
     } catch (error) {
@@ -146,6 +161,10 @@ export const useChessGame = (playerColor = 'white') => {
             }
             setLastMove({ from: quickMove.from, to: quickMove.to });
             updateGameState();
+            
+            // Play move sound
+            const newGameState = engine.getGameState();
+            audioManager.playMoveSound(result.move, newGameState);
           }
         }
       } catch (fallbackError) {
@@ -154,7 +173,7 @@ export const useChessGame = (playerColor = 'white') => {
     } finally {
       setIsThinking(false);
     }
-  }, [engine, ai, gameState.currentPlayer, updateGameState, aiColorCode, playerColor]);
+  }, [engine, ai, gameState.currentPlayer, updateGameState, aiColorCode, playerColor, audioManager]);
 
   // Auto-trigger AI move when it's AI's turn
   useEffect(() => {
@@ -172,7 +191,8 @@ export const useChessGame = (playerColor = 'white') => {
     setIsThinking(false);
     setCapturedPieces({ white: [], black: [] });
     updateGameState();
-  }, [engine, updateGameState]);
+    audioManager.playStartSound();
+  }, [engine, updateGameState, audioManager]);
 
   // Undo move (undo both player and AI moves)
   const undoMove = useCallback(() => {
