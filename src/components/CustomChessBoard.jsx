@@ -59,7 +59,7 @@ const CustomChessBoard = ({
 
   const getSquareStyle = (row, col) => {
     const square = getSquareName(row, col);
-    let classes = `w-16 h-16 flex items-center justify-center text-3xl cursor-pointer select-none relative chess-interactive ${getSquareColor(row, col)}`;
+    let classes = `w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center text-lg sm:text-2xl lg:text-3xl cursor-pointer select-none relative chess-interactive ${getSquareColor(row, col)}`;
     
     // Hover effect for interactive squares
     if (isPlayerTurn) {
@@ -144,9 +144,9 @@ const CustomChessBoard = ({
     <div className="flex flex-col items-center">
       {/* Rank labels (8-1 or 1-8 when flipped) */}
       <div className="flex items-center mb-2">
-        <div className="w-6 flex flex-col items-center mr-2">
+        <div className="w-4 sm:w-5 lg:w-6 flex flex-col items-center mr-1 sm:mr-1.5 lg:mr-2">
           {(flipped ? [1,2,3,4,5,6,7,8] : [8,7,6,5,4,3,2,1]).map(num => (
-            <div key={num} className="h-16 flex items-center text-xs font-medium text-amber-700">
+            <div key={num} className="h-10 sm:h-12 lg:h-16 flex items-center text-xs sm:text-xs lg:text-sm font-medium text-amber-700">
               {num}
             </div>
           ))}
@@ -226,9 +226,9 @@ const CustomChessBoard = ({
       </div>
       
       {/* File labels (a-h or h-a when flipped) */}
-      <div className="flex ml-8">
+      <div className="flex ml-5 sm:ml-6 lg:ml-8">
         {(flipped ? ['h','g','f','e','d','c','b','a'] : ['a','b','c','d','e','f','g','h']).map(letter => (
-          <div key={letter} className="w-16 text-center text-xs font-medium text-amber-700">
+          <div key={letter} className="w-10 sm:w-12 lg:w-16 text-center text-xs sm:text-xs lg:text-sm font-medium text-amber-700">
             {letter}
           </div>
         ))}

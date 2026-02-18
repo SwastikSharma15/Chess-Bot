@@ -45,17 +45,17 @@ const CapturedPieces = ({ pieces, color, title }) => {
   };
 
   return (
-    <div className="chess-panel rounded-xl shadow-lg p-4">
-      <div className="chess-label mb-3">{title}</div>
+    <div className="chess-panel rounded-xl shadow-lg p-3 lg:p-4 w-full">
+      <div className="chess-label mb-2 lg:mb-3 text-xs lg:text-sm">{title}</div>
       <div 
         ref={containerRef}
-        className="flex flex-wrap gap-2 min-h-[48px] items-start"
+        className="flex flex-wrap gap-2 min-h-10 items-start"
       >
         {sortedPieces.length > 0 ? (
           sortedPieces.map((piece, index) => (
             <div
               key={`${piece}-${index}`}
-              className={`captured-piece text-xl ${getPieceStyle(piece)} chess-interactive hover:scale-110`}
+              className={`captured-piece text-lg lg:text-xl ${getPieceStyle(piece)} chess-interactive hover:scale-110`}
               style={
                 piece === piece.toLowerCase() 
                   ? { 
@@ -70,7 +70,7 @@ const CapturedPieces = ({ pieces, color, title }) => {
             </div>
           ))
         ) : (
-          <div className="text-stone-400 text-sm italic font-medium">
+          <div className="text-stone-400 text-xs lg:text-sm italic font-medium">
             No pieces captured
           </div>
         )}
