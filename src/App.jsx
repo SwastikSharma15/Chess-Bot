@@ -127,24 +127,24 @@ const App = () => {
   // Color selection screen
   if (!gameStarted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-amber-100 to-orange-200 flex items-center justify-center p-6">
+      <div className="min-h-screen bg-linear-to-br from-amber-50 via-amber-100 to-orange-200 flex items-center justify-center p-4 lg:p-6">
         <div className="text-center">
-          <h1 className="chess-title text-6xl text-amber-900 mb-4">
+          <h1 className="chess-title text-4xl lg:text-6xl text-amber-900 mb-4">
             Chess Master
           </h1>
-          <p className="chess-subtitle text-xl text-amber-700 mb-12">
+          <p className="chess-subtitle text-lg lg:text-xl text-amber-700 mb-8 lg:mb-12">
             Choose your side
           </p>
           
-          <div className="flex gap-8 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 justify-center">
             {/* White pieces option */}
             <button
               onClick={() => handleStartGame('white')}
-              className="chess-button group bg-gradient-to-br from-stone-100 to-stone-200 hover:from-stone-200 hover:to-stone-300 border-2 border-stone-300 rounded-2xl p-8 transition-all duration-300 hover:scale-105"
+              className="chess-button group bg-linear-to-br from-stone-100 to-stone-200 hover:from-stone-200 hover:to-stone-300 border-2 border-stone-300 rounded-2xl p-6 lg:p-8 transition-all duration-300 hover:scale-105"
             >
               <div className="text-center">
-                <div className="text-6xl mb-4 text-stone-800">♔</div>
-                <h3 className="chess-value text-xl text-stone-800 mb-2">Play as White</h3>
+                <div className="text-5xl lg:text-6xl mb-4 text-stone-800">♔</div>
+                <h3 className="chess-value text-lg lg:text-xl text-stone-800 mb-2">Play as White</h3>
                 <p className="text-stone-600 text-sm">You move first</p>
               </div>
             </button>
@@ -152,11 +152,11 @@ const App = () => {
             {/* Black pieces option */}
             <button
               onClick={() => handleStartGame('black')}
-              className="chess-button group bg-gradient-to-br from-stone-700 to-stone-800 hover:from-stone-600 hover:to-stone-700 border-2 border-stone-600 rounded-2xl p-8 transition-all duration-300 hover:scale-105"
+              className="chess-button group bg-linear-to-br from-stone-700 to-stone-800 hover:from-stone-600 hover:to-stone-700 border-2 border-stone-600 rounded-2xl p-6 lg:p-8 transition-all duration-300 hover:scale-105"
             >
               <div className="text-center">
-                <div className="text-6xl mb-4 text-white">♚</div>
-                <h3 className="chess-value text-xl text-white mb-2">Play as Black</h3>
+                <div className="text-5xl lg:text-6xl mb-4 text-white">♚</div>
+                <h3 className="chess-value text-lg lg:text-xl text-white mb-2">Play as Black</h3>
                 <p className="text-stone-300 text-sm">AI moves first</p>
               </div>
             </button>
@@ -169,25 +169,36 @@ const App = () => {
 
   // Main game screen JSX
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-amber-100 to-orange-200 flex items-center justify-center p-6">
-      <div className="flex items-center gap-8 max-w-7xl w-full">
+    <div className="min-h-screen bg-linear-to-br from-amber-50 via-amber-100 to-orange-200 p-3 lg:p-6">
+      {/* Mobile Header */}
+      <div className="text-center mb-4 lg:mb-8">
+        <h1 className="chess-title text-3xl lg:text-4xl text-amber-900 mb-1 lg:mb-2">
+          Chess Master
+        </h1>
+        <p className="chess-subtitle text-sm lg:text-base text-amber-700">
+          Playing as {playerColor === 'white' ? 'White' : 'Black'}
+        </p>
+      </div>
+
+      {/* Main Layout Container */}
+      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-center gap-4 lg:gap-8 max-w-7xl mx-auto">
         
-        {/* Left Panel - Game Info */}
-        <div className="w-80 space-y-6">
+        {/* Left Panel - Game Info (Desktop) */}
+        <div className="hidden lg:block lg:w-80 space-y-6">
           {/* Game Controls */}
           <div className="chess-panel rounded-xl shadow-lg p-6">
             <div className="flex gap-3">
               <button
                 onClick={handleNewGame}
                 disabled={isThinking}
-                className="chess-button flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="chess-button flex-1 px-4 py-3 text-base bg-linear-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 New Game
               </button>
               <button
                 onClick={handleFlipBoard}
                 disabled={isThinking}
-                className="chess-button flex-1 px-4 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="chess-button flex-1 px-4 py-3 text-base bg-linear-to-r from-amber-600 to-amber-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 Flip Board
               </button>
@@ -232,17 +243,7 @@ const App = () => {
         </div>
 
         {/* Center - Chess Board */}
-        <div className="flex flex-col items-center">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="chess-title text-4xl text-amber-900 mb-2">
-              Chess Master
-            </h1>
-            <p className="chess-subtitle text-amber-700">
-              Playing as {playerColor === 'white' ? 'White' : 'Black'}
-            </p>
-          </div>
-          
+        <div className="flex flex-col items-center flex-shrink-0">
           <CustomChessBoard
             position={position}
             onPieceDrop={onPieceDrop}
@@ -255,8 +256,8 @@ const App = () => {
           />
         </div>
 
-        {/* Right Panel - Move History */}
-        <div className="w-80">
+        {/* Right Panel - Move History (Desktop) */}
+        <div className="hidden lg:block lg:w-80">
           {moveHistory.length > 0 && (
             <div className="chess-panel rounded-xl shadow-lg p-6">
               <div className="chess-label mb-4">Move History</div>
@@ -266,29 +267,29 @@ const App = () => {
               >
                 <div className="space-y-2">
                   {formatMoveHistory().map((move, index) => {
-                    const isLatestMove = index === 0; // Latest move is now at index 0
+                    const isLatestMove = index === 0;
                     return (
                       <div 
                         key={move.moveNumber} 
-                        className={`flex items-center gap-4 p-2 rounded-lg chess-interactive transition-colors duration-300 ${
+                        className={`flex items-center gap-2 p-2 rounded-lg chess-interactive transition-colors duration-300 text-base ${
                           isLatestMove 
                             ? 'bg-green-100 border border-green-300 shadow-sm' 
                             : 'hover:bg-amber-50'
                         }`}
                       >
-                        <span className="chess-label w-6 text-center">
+                        <span className="chess-label w-8 text-right">
                           {move.moveNumber}.
                         </span>
-                        <div className="flex gap-4 flex-1">
-                          <span className="font-mono chess-value text-sm w-12">
-                            {move.whiteMove}
+                        <span className="font-mono chess-value text-sm w-12 text-left">
+                          {move.whiteMove}
+                        </span>
+                        {move.blackMove ? (
+                          <span className="font-mono chess-value text-sm w-12 text-left">
+                            {move.blackMove}
                           </span>
-                          {move.blackMove && (
-                            <span className="font-mono chess-value text-sm w-12">
-                              {move.blackMove}
-                            </span>
-                          )}
-                        </div>
+                        ) : (
+                          <span className="font-mono text-sm w-12"></span>
+                        )}
                         {isLatestMove && (
                           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                         )}
@@ -308,6 +309,106 @@ const App = () => {
               </div>
             </div>
           )}
+        </div>
+
+        {/* Mobile Panels - Below Board */}
+        <div className="lg:hidden space-y-4 w-full">
+          {/* Game Controls */}
+          <div className="chess-panel rounded-xl shadow-lg p-4">
+            <div className="flex gap-2">
+              <button
+                onClick={handleNewGame}
+                disabled={isThinking}
+                className="chess-button flex-1 px-3 py-2 text-sm bg-linear-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                New Game
+              </button>
+              <button
+                onClick={handleFlipBoard}
+                disabled={isThinking}
+                className="chess-button flex-1 px-3 py-2 text-sm bg-linear-to-r from-amber-600 to-amber-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                Flip Board
+              </button>
+            </div>
+          </div>
+
+          {/* Game Status */}
+          <div className="chess-panel rounded-xl shadow-lg p-4">
+            <div className="chess-label mb-2">Game Status</div>
+            <div 
+              ref={statusRef}
+              className={`chess-value text-base ${getStatusColor()}`}
+            >
+              {getStatusMessage()}
+            </div>
+            
+            {isThinking && (
+              <div className="mt-3 flex items-center gap-3">
+                <div 
+                  ref={thinkingRef}
+                  className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full"
+                ></div>
+                <span className="text-xs text-stone-600 font-medium">
+                  Analyzing position...
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Move History */}
+          {moveHistory.length > 0 && (
+            <div className="chess-panel rounded-xl shadow-lg p-4">
+              <div className="chess-label mb-3">Move History</div>
+              <div className="max-h-48 overflow-y-auto custom-scrollbar">
+                <div className="space-y-2">
+                  {formatMoveHistory().map((move, index) => {
+                    const isLatestMove = index === 0;
+                    return (
+                      <div 
+                        key={move.moveNumber} 
+                        className={`flex items-center gap-2 p-2 rounded-lg chess-interactive transition-colors duration-300 text-sm ${
+                          isLatestMove 
+                            ? 'bg-green-100 border border-green-300 shadow-sm' 
+                            : 'hover:bg-amber-50'
+                        }`}
+                      >
+                        <span className="chess-label w-8 text-right">
+                          {move.moveNumber}.
+                        </span>
+                        <span className="font-mono chess-value text-xs w-12 text-left">
+                          {move.whiteMove}
+                        </span>
+                        {move.blackMove ? (
+                          <span className="font-mono chess-value text-xs w-12 text-left">
+                            {move.blackMove}
+                          </span>
+                        ) : (
+                          <span className="font-mono text-xs w-12"></span>
+                        )}
+                        {isLatestMove && (
+                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Captured Pieces */}
+          <CapturedPieces 
+            pieces={capturedPieces.black} 
+            color="black" 
+            title="Black Captured" 
+          />
+          
+          <CapturedPieces 
+            pieces={capturedPieces.white} 
+            color="white" 
+            title="White Captured" 
+          />
         </div>
       </div>
       

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
-/* Disable scrolling */
+/* Allow scrolling for mobile responsiveness */
 html, body {
-  overflow: hidden;
-  height: 100vh;
+  overflow-x: hidden;
+  height: 100%;
 }
 
 #root {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Force all chess pieces to use proper colors */
