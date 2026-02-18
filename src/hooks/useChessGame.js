@@ -5,7 +5,7 @@ import { AudioManager } from '../logic/audioManager.js';
 
 export const useChessGame = (playerColor = 'white') => {
   const [engine] = useState(() => new ChessEngine());
-  const [ai] = useState(() => new ChessAI(4)); // Increased depth for much stronger play
+  const [ai] = useState(() => new ChessAI(6)); // Increased depth for much stronger play
   const [audioManager] = useState(() => new AudioManager());
   
   const [gameState, setGameState] = useState(() => engine.getGameState());
